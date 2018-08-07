@@ -30,6 +30,9 @@
     <ClInclude Include="..\..\..\Wwise 2017.2.6.6636\SDK\include\AK\Plugin\DecimatorFXFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="DecimatorFXDSP.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -39,6 +42,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DecimatorParamFX.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DecimatorFXDSP.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

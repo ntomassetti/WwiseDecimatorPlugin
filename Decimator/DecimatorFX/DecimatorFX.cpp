@@ -28,6 +28,8 @@ DecimatorFX::~DecimatorFX()
 
 AKRESULT DecimatorFX::Init(AK::IAkPluginMemAlloc * in_pAllocator, AK::IAkEffectPluginContext * in_pFXCtx, AK::IAkPluginParam * in_pParams, AkAudioFormat & in_rFormat)
 {
+	m_Decimator = new DecimatorFXDSP[in_rFormat.GetNumChannels()];
+
 	m_pParams = (DecimatorParamFX*)in_pParams;
 	m_pAllocator = in_pAllocator;
 	
@@ -41,6 +43,7 @@ AKRESULT DecimatorFX::Init(AK::IAkPluginMemAlloc * in_pAllocator, AK::IAkEffectP
 
 AKRESULT DecimatorFX::Term(AK::IAkPluginMemAlloc * in_pAllocator)
 {
+	delete[] m_Decimator;
 	AK_PLUGIN_DELETE(in_pAllocator, this); /// Effect must delete itself
 	return AK_Success;
 }
@@ -64,11 +67,12 @@ void DecimatorFX::Execute(AkAudioBuffer * io_pBuffer)
 
 	for (AkUInt32 uChan = 0; uChan<uNumChannels; uChan++)
 	{
+		//Update params...
+		m_Decimator[uChan].updateParameters((int)m_pParams->RTPC.fBits, m_pParams->RTPC.fSampleDown);
 		AkSampleType * pChannel = io_pBuffer->GetChannel(uChan);
 		for (auto i = 0; i < io_pBuffer->MaxFrames(); i++) {
-			pChannel[i] = pChannel[i] * m_pParams->RTPC.fGain;
+			//Process
+			pChannel[i] = m_Decimator[uChan].process(pChannel[i]) * m_pParams->RTPC.fGain;
 		}
-
-		// Process data of pChannel...
 	}
 }

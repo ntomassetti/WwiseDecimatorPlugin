@@ -171,12 +171,14 @@
   <ItemGroup>
     <ClInclude Include="..\..\..\Wwise 2017.2.6.6636\SDK\include\AK\Plugin\DecimatorFXFactory.h" />
     <ClInclude Include="DecimatorFX.h" />
+    <ClInclude Include="DecimatorFXDSP.h" />
     <ClInclude Include="DecimatorParamFX.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DecimatorFX.cpp" />
+    <ClCompile Include="DecimatorFXDSP.cpp" />
     <ClCompile Include="DecimatorParamFX.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

@@ -56,7 +56,7 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="..\..\..\Wwise 2017.2.6.6636\Authoring\x64\Release\bin\plugins\Decimator.xml">
+    <Xml Include="..\Decimator.xml">
       <Filter>Source Files</Filter>
     </Xml>
   </ItemGroup>

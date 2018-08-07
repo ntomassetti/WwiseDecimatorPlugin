@@ -9,6 +9,8 @@ using namespace Wwise;
 
 //Property names
 static LPCWSTR szGain = L"Gain";
+static LPCWSTR szBits = L"Bits";
+static LPCWSTR szSampleDown = L"SampleDown";
 
 DecimatorPlugin::DecimatorPlugin() :m_pPSet(NULL), m_hwndPropView(NULL)
 {
@@ -71,11 +73,16 @@ bool DecimatorPlugin::GetBankParameters(const GUID & in_guidPlatform, AK::Wwise:
 
 	m_pPSet->GetValue(in_guidPlatform, szGain, varProp);
 	in_pDataWriter->WriteReal32(varProp.fltVal);
+	m_pPSet->GetValue(in_guidPlatform, szBits, varProp);
+	in_pDataWriter->WriteReal32(varProp.fltVal);
+	m_pPSet->GetValue(in_guidPlatform, szSampleDown, varProp);
+	in_pDataWriter->WriteReal32(varProp.fltVal);
 
 	return true;
 }
 
 bool DecimatorPlugin::Help(HWND in_hWnd, eDialog in_eDialog, LPCWSTR in_szLanguageCode) const
 {
+	//Nothing currently...
 	return false;
 }

@@ -102,7 +102,7 @@
       <ModuleDefinitionFile>.\Decimator.def</ModuleDefinitionFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention />
-      <AdditionalLibraryDirectories>E:\AudioKinetic\WwisePluginDev\Decimator\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>E:\AudioKinetic\WwisePluginDev\WwiseDecimator\Decimator\x64\Debug\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>DecimatorFX.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Midl>
@@ -130,7 +130,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <ModuleDefinitionFile>.\Decimator.def</ModuleDefinitionFile>
-      <AdditionalLibraryDirectories>E:\AudioKinetic\WwisePluginDev\Decimator\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>E:\AudioKinetic\WwisePluginDev\WwiseDecimator\Decimator\x64\Debug\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>DecimatorFX.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Midl>
@@ -221,7 +221,7 @@
     <ResourceCompile Include="Decimator.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="..\..\..\Wwise 2017.2.6.6636\Authoring\x64\Release\bin\plugins\Decimator.xml" />
+    <Xml Include="..\Decimator.xml" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

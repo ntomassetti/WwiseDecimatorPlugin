@@ -1,6 +1,7 @@
 #pragma once
 
 #include "DecimatorParamFX.h"
+#include "DecimatorFXDSP.h"
 
 class DecimatorFX : public AK::IAkInPlaceEffectPlugin
 {
@@ -32,6 +33,7 @@ public:
 	AKRESULT TimeSkip(AkUInt32 in_uFrames) { return AK_DataReady; }
 
 private:
+	DecimatorFXDSP* m_Decimator;
 
 	/// Cached information
 	//CAkDelayFXDSP			m_FXState;		/// Internal effect state

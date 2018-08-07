@@ -30,7 +30,10 @@ AKRESULT DecimatorParamFX::Init(AK::IAkPluginMemAlloc * in_pAllocator, const voi
 {
 	if (in_ulBlockSize == 0)
 	{
+		//Default init...
 		RTPC.fGain = DECIMATORPARAM_GAIN_DEF;
+		RTPC.fSampleDown = DECIMATORPARAM_SAMPLERATE_DEF;
+		RTPC.fBits = DECIMATORPARAM_BITS_DEF;
 		RTPC.bHasChanged = true;
 		NonRTPC.bHasChanged = true;
 		return AK_Success;
@@ -49,6 +52,9 @@ AKRESULT DecimatorParamFX::SetParamsBlock(const void * in_pParamsBlock, AkUInt32
 	AKRESULT eResult = AK_Success;
 	AkUInt8 * pParamsBlock = (AkUInt8 *)in_pParamsBlock;
 	RTPC.fGain = READBANKDATA(AkReal32, pParamsBlock, in_ulBlockSize);
+	RTPC.fBits = READBANKDATA(AkReal32, pParamsBlock, in_ulBlockSize);
+	RTPC.fSampleDown = READBANKDATA(AkReal32, pParamsBlock, in_ulBlockSize);
+
 	CHECKBANKDATASIZE(in_ulBlockSize, eResult);
 
 	RTPC.bHasChanged = true;
@@ -66,7 +72,14 @@ AKRESULT DecimatorParamFX::SetParam(AkPluginParamID in_ParamID, const void * in_
 		RTPC.fGain = *(AkReal32*)(in_pValue);
 		RTPC.bHasChanged = true;
 		break;
-
+	case AK_DECIMATORPARAM_BITS_ID:
+		RTPC.fBits = *(AkReal32*)(in_pValue);
+		RTPC.bHasChanged = true;
+		break;
+	case AK_DECIMATORPARAM_SAMPLERATE_ID:
+		RTPC.fSampleDown = *(AkReal32*)(in_pValue);
+		RTPC.bHasChanged = true;
+		break;
 	default:
 		AKASSERT(!"Invalid parameter.");
 		eResult = AK_InvalidParameter;

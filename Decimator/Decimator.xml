@@ -57,8 +57,8 @@
       </PlatformSupport>
     </PluginInfo>
     <Properties>
-      <Property Name="Gain" Type="Real32" SupportRTPCType="Additive" DataMeaning="Decibels" DisplayName="Gain" DisplayGroup="Gain">
-        <UserInterface Step="0.5" Fine="0.1" Decimals="1" />
+      <Property Name="Gain" Type="Real32" SupportRTPCType="Additive" DisplayName="Gain" DisplayGroup="Gain">
+        <UserInterface Step="0.1" Fine="0.01" Decimals="2" />
         <DefaultValue>1</DefaultValue>
         <AudioEnginePropertyID>0</AudioEnginePropertyID>
         <Restrictions>
@@ -69,7 +69,33 @@
             </Range>
           </ValueRestriction>
         </Restrictions>
-      </Property>  
+      </Property>
+      <Property Name="Bits" Type="Real32" SupportRTPCType="Additive" DisplayName="Bit Rate">
+        <UserInterface Step="1" Fine="1" Decimals="0" />
+        <DefaultValue>32</DefaultValue>
+        <AudioEnginePropertyID>1</AudioEnginePropertyID>
+        <Restrictions>
+          <ValueRestriction>
+            <Range Type="Real32">
+              <Min>1</Min>
+              <Max>32</Max>
+            </Range>
+          </ValueRestriction>
+        </Restrictions>
+      </Property>
+      <Property Name="SampleDown" Type="Real32" SupportRTPCType="Additive" DisplayName="Sample Down" >
+        <UserInterface Step="0.01" Fine="0.001" Decimals="3" />
+        <DefaultValue>1</DefaultValue>
+        <AudioEnginePropertyID>2</AudioEnginePropertyID>
+        <Restrictions>
+          <ValueRestriction>
+            <Range Type="Real32">
+              <Min>0.001</Min>
+              <Max>1.000</Max>
+            </Range>
+          </ValueRestriction>
+        </Restrictions>
+      </Property>
     </Properties>
   </EffectPlugin>
 </PluginModule>

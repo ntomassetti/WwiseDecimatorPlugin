@@ -3,14 +3,20 @@
 #include <AK/SoundEngine/Common/IAkPlugin.h>
 
 static const AkPluginParamID AK_DECIMATORPARAM_GAIN_ID = 0;
+static const AkPluginParamID AK_DECIMATORPARAM_BITS_ID = 1;
+static const AkPluginParamID AK_DECIMATORPARAM_SAMPLERATE_ID = 2;
 
-static const AkPluginParamID AK_DECIMATORPARAM_NUM = 1;
+static const AkPluginParamID AK_DECIMATORPARAM_NUM = 3;
 
 //default val
 #define  DECIMATORPARAM_GAIN_DEF (1.0f)
+#define DECIMATORPARAM_BITS_DEF (32)
+#define DECIMATORPARAM_SAMPLERATE_DEF (1.0f)
 
 struct DecimatorRTPCParams {
 	AkReal32 fGain;
+	AkReal32 fBits;
+	AkReal32 fSampleDown;
 	bool bHasChanged;
 };
 
