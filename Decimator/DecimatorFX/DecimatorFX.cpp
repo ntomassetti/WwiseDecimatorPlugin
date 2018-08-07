@@ -25,7 +25,7 @@ DecimatorFX::DecimatorFX() : m_pParams(NULL), m_pAllocator(NULL)
 
 DecimatorFX::~DecimatorFX()
 {
-		delete[] m_Decimator;
+
 }
 
 AKRESULT DecimatorFX::Init(AK::IAkPluginMemAlloc * in_pAllocator, AK::IAkEffectPluginContext * in_pFXCtx, AK::IAkPluginParam * in_pParams, AkAudioFormat & in_rFormat)
@@ -51,7 +51,7 @@ AKRESULT DecimatorFX::Init(AK::IAkPluginMemAlloc * in_pAllocator, AK::IAkEffectP
 
 AKRESULT DecimatorFX::Term(AK::IAkPluginMemAlloc * in_pAllocator)
 {
-	//delete[] m_Decimator;
+	delete[] m_Decimator;
 	AK_PLUGIN_DELETE(in_pAllocator, this); /// Effect must delete itself
 	return AK_Success;
 }
