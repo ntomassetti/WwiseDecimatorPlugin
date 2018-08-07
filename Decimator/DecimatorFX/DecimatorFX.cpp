@@ -25,6 +25,7 @@ DecimatorFX::DecimatorFX() : m_pParams(NULL), m_pAllocator(NULL)
 
 DecimatorFX::~DecimatorFX()
 {
+		delete[] m_Decimator;
 }
 
 AKRESULT DecimatorFX::Init(AK::IAkPluginMemAlloc * in_pAllocator, AK::IAkEffectPluginContext * in_pFXCtx, AK::IAkPluginParam * in_pParams, AkAudioFormat & in_rFormat)
@@ -50,7 +51,7 @@ AKRESULT DecimatorFX::Init(AK::IAkPluginMemAlloc * in_pAllocator, AK::IAkEffectP
 
 AKRESULT DecimatorFX::Term(AK::IAkPluginMemAlloc * in_pAllocator)
 {
-	delete[] m_Decimator;
+	//delete[] m_Decimator;
 	AK_PLUGIN_DELETE(in_pAllocator, this); /// Effect must delete itself
 	return AK_Success;
 }
@@ -72,7 +73,7 @@ void DecimatorFX::Execute(AkAudioBuffer * io_pBuffer)
 {
 	AkUInt32 uNumChannels = io_pBuffer->NumChannels();
 
-	//AK_PERF_RECORDING_START("Decimator", 25, 30)
+	AK_PERF_RECORDING_START("Decimator", 25, 30)
 
 	AkReal32 fTargetGain = m_pParams->GetGain();
 
@@ -89,5 +90,5 @@ void DecimatorFX::Execute(AkAudioBuffer * io_pBuffer)
 		}
 	}
 
-	//AK_PERF_RECORDING_STOP("Decimator", 25, 30)
+	AK_PERF_RECORDING_STOP("Decimator", 25, 30)
 }

@@ -60,4 +60,12 @@
       <Filter>Source Files</Filter>
     </Xml>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\ha_logo_horizontal_gray.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\HALogo.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
 </Project>
