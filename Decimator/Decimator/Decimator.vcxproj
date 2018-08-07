@@ -93,7 +93,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN64;AUDIOKINETIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>E:\AudioKinetic\Wwise 2017.2.6.6636\SDK\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\Audiokinetic\Wwise 2018.1.0.6714\SDK\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
@@ -102,7 +102,7 @@
       <ModuleDefinitionFile>.\Decimator.def</ModuleDefinitionFile>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
       <DataExecutionPrevention />
-      <AdditionalLibraryDirectories>E:\AudioKinetic\WwisePluginDev\WwiseDecimator\Decimator\x64\Debug\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\Studio 5\Documents\C++\WwisePlugins\EffectPlugin\WwiseDecimator\Decimator\x64\Debug</AdditionalLibraryDirectories>
       <AdditionalDependencies>DecimatorFX.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Midl>
@@ -124,13 +124,13 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_WINDOWS;_DEBUG;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>E:\AudioKinetic\Wwise 2017.2.6.6636\SDK\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\Audiokinetic\Wwise 2018.1.0.6714\SDK\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <ModuleDefinitionFile>.\Decimator.def</ModuleDefinitionFile>
-      <AdditionalLibraryDirectories>E:\AudioKinetic\WwisePluginDev\WwiseDecimator\Decimator\x64\Debug\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\Studio 5\Documents\C++\WwisePlugins\EffectPlugin\WwiseDecimator\Decimator\x64\Debug</AdditionalLibraryDirectories>
       <AdditionalDependencies>DecimatorFX.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Midl>
@@ -221,7 +221,9 @@
     <ResourceCompile Include="Decimator.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Xml Include="..\Decimator.xml" />
+    <Xml Include="..\Decimator.xml">
+      <SubType>Designer</SubType>
+    </Xml>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

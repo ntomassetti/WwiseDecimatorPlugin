@@ -28,8 +28,17 @@ void DecimatorFXDSP::updateParameters(int bits, float rate)
 	_bits = bits;
 	_rate = rate;
 	//Wwise will go beyond what the decimator expects. Force it to not do that...
-	if (_bits <= 0)
+	if (_bits <= 0) {
 		_bits = 1;
-	if (_rate < 0)
+	}
+	else if(_bits >= 24){
+		_bits = 24;
+	}
+
+	if (_rate <= 0) {
 		_rate = 0.01f;
+	}else if(_rate >= 1.0f){
+		_rate = 1.0f;
+	}
+
 }

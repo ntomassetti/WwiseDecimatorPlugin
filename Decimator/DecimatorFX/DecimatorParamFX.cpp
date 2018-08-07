@@ -69,7 +69,7 @@ AKRESULT DecimatorParamFX::SetParam(AkPluginParamID in_ParamID, const void * in_
 
 	switch (in_ParamID) {
 	case AK_DECIMATORPARAM_GAIN_ID:
-		RTPC.fGain = *(AkReal32*)(in_pValue);
+		RTPC.fGain = AkClamp(*reinterpret_cast<const AkReal32*>(in_pValue), -96.3f, 24.f);
 		RTPC.bHasChanged = true;
 		break;
 	case AK_DECIMATORPARAM_BITS_ID:

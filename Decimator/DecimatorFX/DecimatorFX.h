@@ -35,6 +35,9 @@ public:
 private:
 	DecimatorFXDSP* m_Decimator;
 
+	
+	AkReal32 fCurrentGain;
+
 	/// Cached information
 	//CAkDelayFXDSP			m_FXState;		/// Internal effect state
 	DecimatorParamFX *		m_pParams;		/// Effect parameter node

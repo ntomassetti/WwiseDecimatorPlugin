@@ -9,7 +9,7 @@ static const AkPluginParamID AK_DECIMATORPARAM_SAMPLERATE_ID = 2;
 static const AkPluginParamID AK_DECIMATORPARAM_NUM = 3;
 
 //default val
-#define  DECIMATORPARAM_GAIN_DEF (1.0f)
+#define  DECIMATORPARAM_GAIN_DEF (0.f)
 #define DECIMATORPARAM_BITS_DEF (32)
 #define DECIMATORPARAM_SAMPLERATE_DEF (1.0f)
 
@@ -63,5 +63,14 @@ public:
 		const void *	in_pValue,
 		AkUInt32		in_ulParamSize
 	);
+
+	AkReal32 GetGain();
+
+
 };
 
+inline AkReal32 DecimatorParamFX::GetGain() {
+	AkReal32 fOutputLevel = RTPC.fGain;
+	fOutputLevel = powf(10.f, (fOutputLevel * 0.05f));
+	return fOutputLevel;
+}

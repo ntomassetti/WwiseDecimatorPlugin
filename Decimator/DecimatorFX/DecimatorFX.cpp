@@ -1,6 +1,7 @@
 #include "DecimatorFX.h"
 #include <AK/Tools/Common/AkAssert.h>
 #include <AK/AkWwiseSDKVersion.h>
+#include <AK/DSP/AkApplyGain.h>
 
 
 /// Plugin mechanism. Instantiation method that must be registered to the plug-in manager.
@@ -33,6 +34,12 @@ AKRESULT DecimatorFX::Init(AK::IAkPluginMemAlloc * in_pAllocator, AK::IAkEffectP
 	m_pParams = (DecimatorParamFX*)in_pParams;
 	m_pAllocator = in_pAllocator;
 	
+	fCurrentGain = m_pParams->GetGain();
+
+	for (int i = 0; i < *(&m_Decimator + 1) - m_Decimator; i++) {
+		m_Decimator[i].updateParameters((int)m_pParams->RTPC.fBits, (float)m_pParams->RTPC.fSampleDown);
+	}
+
 	m_pParams->NonRTPC.bHasChanged = false;
 	m_pParams->RTPC.bHasChanged = false;
 
@@ -65,14 +72,22 @@ void DecimatorFX::Execute(AkAudioBuffer * io_pBuffer)
 {
 	AkUInt32 uNumChannels = io_pBuffer->NumChannels();
 
+	//AK_PERF_RECORDING_START("Decimator", 25, 30)
+
+	AkReal32 fTargetGain = m_pParams->GetGain();
+
+	AK::DSP::ApplyGain(io_pBuffer, fCurrentGain, fTargetGain, false);
+	fCurrentGain = fTargetGain;
+
 	for (AkUInt32 uChan = 0; uChan<uNumChannels; uChan++)
 	{
-		//Update params...
-		m_Decimator[uChan].updateParameters((int)m_pParams->RTPC.fBits, m_pParams->RTPC.fSampleDown);
 		AkSampleType * pChannel = io_pBuffer->GetChannel(uChan);
 		for (auto i = 0; i < io_pBuffer->MaxFrames(); i++) {
+			m_Decimator[uChan].updateParameters((int)m_pParams->RTPC.fBits, (float)m_pParams->RTPC.fSampleDown);
 			//Process
-			pChannel[i] = m_Decimator[uChan].process(pChannel[i]) * m_pParams->RTPC.fGain;
+			pChannel[i] = m_Decimator[uChan].process(pChannel[i]);
 		}
 	}
+
+	//AK_PERF_RECORDING_STOP("Decimator", 25, 30)
 }

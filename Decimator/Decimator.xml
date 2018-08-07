@@ -58,27 +58,27 @@
     </PluginInfo>
     <Properties>
       <Property Name="Gain" Type="Real32" SupportRTPCType="Additive" DisplayName="Gain" DisplayGroup="Gain">
-        <UserInterface Step="0.1" Fine="0.01" Decimals="2" />
-        <DefaultValue>1</DefaultValue>
+        <UserInterface Step="0.5" Fine="0.1" Decimals="2" />
+        <DefaultValue>0.0</DefaultValue>
         <AudioEnginePropertyID>0</AudioEnginePropertyID>
         <Restrictions>
           <ValueRestriction>
             <Range Type="Real32">
-              <Min>0.0</Min>
-              <Max>2.0</Max>
+              <Min>-96.3</Min>
+              <Max>24</Max>
             </Range>
           </ValueRestriction>
         </Restrictions>
       </Property>
       <Property Name="Bits" Type="Real32" SupportRTPCType="Additive" DisplayName="Bit Rate">
         <UserInterface Step="1" Fine="1" Decimals="0" />
-        <DefaultValue>32</DefaultValue>
+        <DefaultValue>24</DefaultValue>
         <AudioEnginePropertyID>1</AudioEnginePropertyID>
         <Restrictions>
           <ValueRestriction>
             <Range Type="Real32">
               <Min>1</Min>
-              <Max>32</Max>
+              <Max>24</Max>
             </Range>
           </ValueRestriction>
         </Restrictions>
