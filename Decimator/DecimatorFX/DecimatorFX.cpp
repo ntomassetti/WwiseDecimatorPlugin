@@ -37,10 +37,10 @@ AKRESULT DecimatorFX::Init(AK::IAkPluginMemAlloc * in_pAllocator, AK::IAkEffectP
 	
 	fCurrentGain = m_pParams->GetGain();
 
-	for (int i = 0; i < *(&m_Decimator + 1) - m_Decimator; i++) {
+	for (int i = 0; i < in_rFormat.GetNumChannels(); i++) {
 		m_Decimator[i].updateParameters((int)m_pParams->RTPC.fBits, (float)m_pParams->RTPC.fSampleDown);
 	}
-
+	
 	m_pParams->NonRTPC.bHasChanged = false;
 	m_pParams->RTPC.bHasChanged = false;
 
@@ -83,6 +83,7 @@ void DecimatorFX::Execute(AkAudioBuffer * io_pBuffer)
 	for (AkUInt32 uChan = 0; uChan<uNumChannels; uChan++)
 	{
 		AkSampleType * pChannel = io_pBuffer->GetChannel(uChan);
+		
 		for (auto i = 0; i < io_pBuffer->MaxFrames(); i++) {
 			m_Decimator[uChan].updateParameters((int)m_pParams->RTPC.fBits, (float)m_pParams->RTPC.fSampleDown);
 			//Process
