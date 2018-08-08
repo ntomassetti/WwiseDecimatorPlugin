@@ -72,11 +72,11 @@ AKRESULT DecimatorFX::GetPluginInfo(AkPluginInfo & out_rPluginInfo)
 void DecimatorFX::Execute(AkAudioBuffer * io_pBuffer)
 {
 	AkUInt32 uNumChannels = io_pBuffer->NumChannels();
-
+	AkUInt32 uVFrames = io_pBuffer->uValidFrames;
 	AK_PERF_RECORDING_START("Decimator", 25, 30)
 
 	AkReal32 fTargetGain = m_pParams->GetGain();
-
+	//Gain
 	AK::DSP::ApplyGain(io_pBuffer, fCurrentGain, fTargetGain, false);
 	fCurrentGain = fTargetGain;
 
@@ -84,7 +84,7 @@ void DecimatorFX::Execute(AkAudioBuffer * io_pBuffer)
 	{
 		AkSampleType * pChannel = io_pBuffer->GetChannel(uChan);
 		
-		for (auto i = 0; i < io_pBuffer->MaxFrames(); i++) {
+		for (auto i = 0; i < uVFrames; i++) {
 			m_Decimator[uChan].updateParameters((int)m_pParams->RTPC.fBits, (float)m_pParams->RTPC.fSampleDown);
 			//Process
 			pChannel[i] = m_Decimator[uChan].process(pChannel[i]);
